@@ -1,4 +1,4 @@
-#!/usr/bin/ruby
+#!/usr/bin/ruby -w
 
 require 'rubygems'
 require 'serialport'
@@ -16,21 +16,20 @@ class Serial_client < Rink::Console
   option :allow_ruby => false
 
   def initialize (port_, baup_)
-    puts port_
-    puts baup_
-    puts port_.class
-    puts baup_.class
     @sp = SerialPort.new port_, baup_
-    # @read_th = Thread.new {
-    #  puts @sp.gets
-    # }
+    @read_th = Thread.new {
+      puts @sp.gets
+    }
+    super()
   end
 
   def process_line (line_)
     puts line_
-    @sp.write(line_+ "\n")
+    @sp.write(line_)
   end
 
 end
 
+puts options[:port]
+puts options[:speed]
 Serial_client.new(options[:port], options[:speed])
