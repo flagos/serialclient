@@ -32,12 +32,14 @@ class Serial_client < Rink::Console
 
 end
 
-Signal.trap('TERM') do 
- Process.exit 0
+Signal.trap('TERM') do
+  puts "\n"
+  Process.exit 0
 end
 
 Signal.trap('INT') do 
- Process.exit 0
+  puts "\n"
+  Process.exit 0
 end
 
 
