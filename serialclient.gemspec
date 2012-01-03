@@ -11,10 +11,13 @@ GEMSPEC = Gem::Specification.new do |s|
   s.version = File.read("VERSION").strip
   s.license = 'GPL-3'
   s.author = "flagos"
-  s.email = "flagospub@gmmail.com"
+  s.email = "flagospub@gmail.com"
   s.homepage = "https://github.com/flagos/serialclient"
   s.files = FileList["{bin}/*", "serialclient.gemspec", "VERSION"].to_a.sort
-  s.require_path = "bin"
+  s.bindir = 'bin'
+  s.executables << 'serialclient'
   s.has_rdoc = false
-  # s.add_dependency('ruby-dbus-openplacos', '>= 0.6.2')
+  s.add_dependency('serialport')
+  s.add_dependency('rink')
+  s.require_path ='bin'
 end
