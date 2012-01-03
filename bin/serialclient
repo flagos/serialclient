@@ -1,4 +1,4 @@
-#!/usr/bin/ruby -w
+#!/usr/bin/ruby 
 
 require 'rubygems'
 require 'serialport'
@@ -9,7 +9,7 @@ require 'micro-optparse'
 options = Parser.new do |p|
   p.banner = "Serial terminal client"
   p.option :port, "path to serial device, ex: /dev/ttyUSB0", :default => ""
-  p.option :speed, "speed in baups", :default => 9600
+  p.option :speed, "speed in baups", :default => 115200 
 end.process!
 
 class Serial_client < Rink::Console
@@ -18,18 +18,27 @@ class Serial_client < Rink::Console
   def initialize (port_, baup_)
     @sp = SerialPort.new port_, baup_
     @read_th = Thread.new {
-      puts @sp.gets
+      while 1 do
+        puts @sp.gets
+      end
     }
     super()
   end
 
   def process_line (line_)
-    puts line_
-    @sp.write(line_)
+    @sp.write(line_+ "\n")
+    sleep 0.01
   end
 
 end
 
-puts options[:port]
-puts options[:speed]
+Signal.trap('TERM') do 
+ Process.exit 0
+end
+
+Signal.trap('INT') do 
+ Process.exit 0
+end
+
+
 Serial_client.new(options[:port], options[:speed])
