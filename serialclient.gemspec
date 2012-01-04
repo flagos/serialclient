@@ -19,5 +19,6 @@ GEMSPEC = Gem::Specification.new do |s|
   s.has_rdoc = false
   s.add_dependency('serialport')
   s.add_dependency('rink')
+  s.add_dependency('micro-optparse')
   s.require_path ='bin'
 end
