@@ -9,7 +9,7 @@ require 'micro-optparse'
 options = Parser.new do |p|
   p.banner = "Serial terminal client"
   p.option :port, "path to serial device, ex: /dev/ttyUSB0", :default => ""
-  p.option :speed, "speed in baups", :default => 115200 
+  p.option :speed, "speed in baups", :default => 115200 , :value_satisfies => lambda {|x| x >= 50 && x <= 256000}
 end.process!
 
 class Serial_client < Rink::Console
@@ -43,4 +43,4 @@ Signal.trap('INT') do
 end
 
 
-Serial_client.new(options[:port], options[:speed])
+Serial_client.new(options[:port], options[:speed].to_i)
