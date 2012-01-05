@@ -48,9 +48,9 @@ class Serial_client < Rink::Console
     super()
   end
 
-  def process_line (line_)
+  def process_line (line_) # process line is called by rink when user inputs something
     @sp.write(line_+ "\n")
-    sleep 0.01
+    sleep 0.01  # if device respond to a request, it has time to display: this is only cosmetic 
   end
 
 end
