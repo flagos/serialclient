@@ -42,7 +42,13 @@ class Serial_client < Rink::Console
                           )
     @read_th = Thread.new {
       while 1 do
-        puts @sp.gets
+        get = @sp.gets
+        if get.nil?
+          puts "HW disconnect detected"
+          Process.exit 255
+        else
+          puts get
+        end
       end
     }
     super()
