@@ -71,4 +71,8 @@ Signal.trap('INT') do
   Process.exit 0
 end
 
+if options[:port] == ""
+  puts "Please specify a port with --port. See help for more information."
+  Process.exit 1
+end
 Serial_client.new(options[:port], options[:speed].to_i, options[:data_bits], options[:stop_bits], SerialPort.const_get(options[:parity]))
