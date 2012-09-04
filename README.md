@@ -28,3 +28,11 @@ Best option is to use rubygems to install it.
    * data bits
    * stop_bits
    * parity
+
+* Enjoy ! You will get a silly prompt that send commands directly to device. For example, with IO board that manage a led
+` ./serialclient --port /dev/ttyUSB0 
+>> Interactive Console <<
+Serial_client > set led off
+led turned off
+
+Serial_client > `
