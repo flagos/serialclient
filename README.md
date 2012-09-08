@@ -1,5 +1,7 @@
 # Serialclient: a command-line client for serial device #
 
+Serialclient is a client to communicate to a serial port. Serialclient works in command line since it is developped with KISS philosophy at mind.
+
 ## How to install it ##
 
 Best option is to use rubygems to install it.
