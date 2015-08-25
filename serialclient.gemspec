@@ -10,8 +10,8 @@ GEMSPEC = Gem::Specification.new do |s|
   EOF
   s.version = File.read("VERSION").strip
   s.license = 'GPL-3'
-  s.author = "flagos"
-  s.email = "flagospub@gmail.com"
+  s.author = ""
+  s.email = ""
   s.homepage = "https://github.com/flagos/serialclient"
   s.files = FileList["{bin}/*", "serialclient.gemspec", "VERSION"].to_a.sort
   s.bindir = 'bin'
