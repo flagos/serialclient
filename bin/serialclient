@@ -1,4 +1,4 @@
-#!/usr/bin/ruby 
+#!/usr/bin/ruby
 
 #    This file is part of Serialclient.
 #
@@ -25,7 +25,7 @@ require 'micro-optparse'
 options = Parser.new do |p|
   p.banner = "Serial terminal client"
   p.option :port, "path to serial device, ex: /dev/ttyUSB0", :default => ""
-  p.option :speed, "speed in baups", :default => 115200 , :value_satisfies => lambda {|x| x >= 50 && x <= 256000}
+  p.option :speed, "speed in baups", :default => 115200 , :value_satisfies => lambda {|x| x >= 50 && x <= 1000000}
   p.option :data_bits, "data bits for modem params [5..8] on Unix [4..8] on Windows", :default => 8, :value_satisfies => lambda {|x|  x >= 4 && x <= 8 }
   p.option :stop_bits, "data bits for modem params", :default => 1, :value_in_set => [1, 2]
   p.option :parity, "parity: NONE/EVEN/ODD/[MARK/SPACE] [Windows only]", :default => "NONE", :value_in_set => ["NONE", "EVEN", "ODD", "MARK", "SPACE"]
@@ -56,7 +56,7 @@ class Serial_client < Rink::Console
 
   def process_line (line_) # process line is called by rink when user inputs something
     @sp.write(line_+ "\n")
-    sleep 0.01  # if device respond to a request, it has time to display: this is only cosmetic 
+    sleep 0.01  # if device respond to a request, it has time to display: this is only cosmetic
   end
 
 end
@@ -66,7 +66,7 @@ Signal.trap('TERM') do
   Process.exit 0
 end
 
-Signal.trap('INT') do 
+Signal.trap('INT') do
   puts "\n"
   Process.exit 0
 end
